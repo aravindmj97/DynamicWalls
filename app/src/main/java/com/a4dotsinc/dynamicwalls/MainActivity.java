@@ -64,9 +64,16 @@ public class MainActivity extends AppCompatActivity {
                 if(isChecked){
                     editor.putInt(getString(R.string.blur_on), 1);
                     editor.commit();
+                    cancel();
+                    start();
+                    Snackbar snackbar = Snackbar.make(buttonView, "Blur Effedt Will be Added to the Next Image"
+                                                , Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                 }else{
                     editor.putInt(getString(R.string.blur_on), 0);
                     editor.commit();
+                    cancel();
+                    start();
                 }
             }
         });
@@ -110,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
                 editor.putInt(getString(R.string.time_interval), Integer.parseInt(time.getText().toString()));
                 editor.commit();
                 vibrator.vibrate(30);
+                cancel();
+                start();
                 Snackbar snackbar = Snackbar
                                         .make(v, "Tags and Interval Saved", Snackbar.LENGTH_SHORT);
                 snackbar.show();
