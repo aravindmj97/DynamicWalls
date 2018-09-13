@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DynamicWalls</string>
+    <string name="active_switches">ActiveSwitchAndTags</string>
+    <string name="last_sync">last_sync_time</string>
+    <string name="timer_on">timerOn</string>
+    <string name="tags">TagsList</string>
+    <string name="time_interval">timeInterval</string>
+</resources>
