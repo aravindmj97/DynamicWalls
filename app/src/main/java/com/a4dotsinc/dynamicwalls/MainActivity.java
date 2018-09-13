@@ -25,7 +25,7 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    Switch turnOn;
+    Switch turnOn, blur;
     private PendingIntent pendingIntent;
     EditText tags, time;
     Button save;
@@ -42,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
         sharedPref = getApplicationContext().getSharedPreferences(
                 getString(R.string.active_switches), Context.MODE_PRIVATE);
 
+        final SharedPreferences.Editor editor = sharedPref.edit();
+
         turnOn = (Switch) findViewById(R.id.turnOn);
+        blur = (Switch) findViewById(R.id.blur);
         Intent alarmIntent = new Intent(MainActivity.this, TimeReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmIntent, 0);
 
@@ -50,6 +53,23 @@ public class MainActivity extends AppCompatActivity {
         if(timerToogle == 1){
             turnOn.setChecked(true);
         }
+
+        if(sharedPref.getInt(getString(R.string.blur_on), 0) == 1){
+            blur.setChecked(true);
+        }
+
+        blur.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    editor.putInt(getString(R.string.blur_on), 1);
+                    editor.commit();
+                }else{
+                    editor.putInt(getString(R.string.blur_on), 0);
+                    editor.commit();
+                }
+            }
+        });
 
         tags = (EditText) findViewById(R.id.tags);
         time = (EditText) findViewById(R.id.timeInter);
@@ -61,8 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
         tags.setText(sharedPref.getString(getString(R.string.tags), ""));
         time.setText(String.valueOf(sharedPref.getInt(getString(R.string.time_interval), 10)));
-
-        final SharedPreferences.Editor editor = sharedPref.edit();
 
         vibrator = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 

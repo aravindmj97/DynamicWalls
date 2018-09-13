@@ -5,4 +5,5 @@
     <string name="timer_on">timerOn</string>
     <string name="tags">TagsList</string>
     <string name="time_interval">timeInterval</string>
+    <string name="blur_on">blurOn</string>
 </resources>
