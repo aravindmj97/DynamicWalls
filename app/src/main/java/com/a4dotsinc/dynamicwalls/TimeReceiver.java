@@ -9,7 +9,6 @@ import android.graphics.Bitmap;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsic;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
 import android.view.View;
@@ -46,7 +45,14 @@ public class TimeReceiver extends BroadcastReceiver {
             else{
                 tags = sharedPref.getString(context.getString(R.string.tags), "");
             }
-            imageLoader.loadImage("https://source.unsplash.com/1080x1920/?"+tags, new SimpleImageLoadingListener() {
+            String url;
+            if (sharedPref.getInt(context.getString(R.string.just_hd), 0) == 0){
+                url = "https://source.unsplash.com/featured/?";
+            }else{
+               url = "https://source.unsplash.com/1080x1920/?";
+            }
+
+            imageLoader.loadImage(url+tags, new SimpleImageLoadingListener() {
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                     try{

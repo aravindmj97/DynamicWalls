@@ -9,9 +9,6 @@ import android.os.Vibrator;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -20,12 +17,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    Switch turnOn, blur;
+    Switch turnOn, blur, onlyHd;
     private PendingIntent pendingIntent;
     EditText tags, time;
     Button save;
@@ -46,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         turnOn = (Switch) findViewById(R.id.turnOn);
         blur = (Switch) findViewById(R.id.blur);
+        onlyHd = (Switch) findViewById(R.id.onlyHD);
+
         Intent alarmIntent = new Intent(MainActivity.this, TimeReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmIntent, 0);
 
@@ -58,6 +56,34 @@ public class MainActivity extends AppCompatActivity {
             blur.setChecked(true);
         }
 
+        if(sharedPref.getInt(getString(R.string.just_hd), 0) == 1){
+            onlyHd.setChecked(true);
+        }
+
+        onlyHd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    editor.putInt(getString(R.string.just_hd), 1);
+                    editor.commit();
+                    cancel();
+                    start();
+                    vibrator.vibrate(30);
+                    Snackbar snackbar = Snackbar.make(buttonView, "Only 1080p Walls will be used!"
+                            , Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+                }else{
+                    editor.putInt(getString(R.string.just_hd), 0);
+                    editor.commit();
+                    cancel();
+                    start();
+                    vibrator.vibrate(20);
+                    Snackbar snackbar = Snackbar.make(buttonView, "Varying Resolution Walls will be used!"
+                            , Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+                }
+            }
+        });
         blur.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
