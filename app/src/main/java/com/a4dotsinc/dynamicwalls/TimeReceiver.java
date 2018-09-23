@@ -79,13 +79,13 @@ public class TimeReceiver extends BroadcastReceiver {
                     try{
                         if (sharedPref.getInt(context.getString(R.string.blur_on), 0) == 1){
                             wallpaperManager.setBitmap(blutIt(loadedImage, 2f));
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
                                 wallpaperManager.setBitmap((blutIt(loadedImage, 2f)), null, true, WallpaperManager.FLAG_LOCK);
                             }
                         }
                         else{
                             wallpaperManager.setBitmap(loadedImage);
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
                                 wallpaperManager.setBitmap(loadedImage, null, true, WallpaperManager.FLAG_LOCK);
                             }
                         }
