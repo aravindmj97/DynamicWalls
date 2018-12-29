@@ -7,4 +7,5 @@
     <string name="time_interval">timeInterval</string>
     <string name="blur_on">blurOn</string>
     <string name="just_hd">justHD</string>
+    <string name="wall_provider">wall_provider</string>
 </resources>

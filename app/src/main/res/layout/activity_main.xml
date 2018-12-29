@@ -1,128 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoslab_bold"
-        android:textColor="@color/textColor"
-        android:layout_margin="10dp"
-        android:textSize="20sp"
-        android:text="Provide the Time Interval in Mins for Wallpaper Changes"/>
-
-    <LinearLayout
-        android:id="@+id/timedata"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title">
-        <Switch
-            android:id="@+id/turnOn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"/>
-
-        <android.support.design.widget.TextInputLayout
+<layout>
+    <android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title">
-            <EditText
-                android:id="@+id/timeInter"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/robotoslab_bold"
+                android:textColor="@color/textColor"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:text="Provide the Time Interval in Mins for Wallpaper Changes"/>
+
+            <LinearLayout
+                android:id="@+id/timedata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title">
+                <Switch
+                    android:id="@+id/turnOn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title">
+                    <EditText
+                        android:id="@+id/timeInter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotoslab_regular"
+                        android:inputType="number"
+                        android:hint="Enter Minutes"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tagsHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/timedata">
+                <TextView
+                    android:id="@+id/tagsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add Some Coma Separated Tags"
+                    android:fontFamily="@font/robotoslab_bold"
+                    android:textColor="@color/textColor"
+                    android:layout_margin="10dp"
+                    android:textSize="20sp"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tagLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+                    <EditText
+                        android:id="@+id/tags"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotoslab_regular"
+                        android:textSize="20sp"
+                        android:hint="nature,light,sea"
+                        />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/tagsHolder"
+                android:layout_margin="20dp">
+                <Button
+                    android:id="@+id/save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/textColor"
+                    android:text="Save Tags"
+                    android:layout_marginStart="25dp"
+                    android:textColor="#fff" />
+                <Button
+                    android:id="@+id/providerChange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/textColor"
+                    android:layout_marginStart="70dp"
+                    android:text="Walls Providers"
+                    android:textColor="#fff" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/lastChange"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/robotoslab_regular"
-                android:inputType="number"
-                android:hint="Enter Minutes"/>
-        </android.support.design.widget.TextInputLayout>
-    </LinearLayout>
+                android:textColor="@color/textColor"
+                android:layout_below="@id/buttonHolder"
+                android:text="Last Change shit"
+                android:layout_margin="10dp"/>
 
-    <TextView
-        android:id="@+id/tagsText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Some Coma Separated Tags"
-        android:layout_below="@id/timedata"
-        android:fontFamily="@font/robotoslab_bold"
-        android:textColor="@color/textColor"
-        android:layout_margin="10dp"
-        android:textSize="20sp"/>
+            <LinearLayout
+                android:id="@+id/switchesHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/lastChange">
+                <Switch
+                    android:id="@+id/blur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Blur Wallpaper"
+                    android:switchPadding="10dp"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/tagLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tagsText"
-        android:layout_margin="10dp">
-        <EditText
-            android:id="@+id/tags"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/robotoslab_regular"
-            android:textSize="20sp"
-            android:hint="nature,light,sea"
-            />
-    </android.support.design.widget.TextInputLayout>
+                <Switch
+                    android:id="@+id/onlyHD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Only 1080p Walls"
+                    android:switchPadding="10dp"/>
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save Tags"
-        android:layout_below="@id/tagLayout"
-        android:layout_centerInParent="true"
-        android:backgroundTint="@color/textColor"
-        android:textColor="#fff"/>
+            <View
+                android:id="@+id/temp"
+                android:layout_width="match_parent"
+                android:layout_below="@id/switchesHolder"
+                android:layout_height="0dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="4 Dots Inc"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:textSize="20sp"
-        android:fontFamily="@font/robotoslab_bold"
-        android:textColor="@color/textColor"
-        android:layout_margin="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4 Dots Inc"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:textSize="20sp"
+                android:layout_below="@id/temp"
+                android:fontFamily="@font/robotoslab_bold"
+                android:textColor="@color/textColor"
+                android:layout_margin="10dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="powered by Unsplash"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:fontFamily="@font/robotoslab_regular"
-        android:layout_margin="10dp"/>
+            <ImageView
+                android:id="@+id/creditLogo"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:src="@drawable/pexels_logo"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/temp"
+                android:fontFamily="@font/robotoslab_regular"
+                android:layout_marginRight="10dp"/>
 
-    <TextView
-        android:id="@+id/lastChange"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/robotoslab_regular"
-        android:textColor="@color/textColor"
-        android:layout_below="@id/save"
-        android:layout_margin="10dp"/>
-
-    <Switch
-        android:id="@+id/blur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lastChange"
-        android:layout_margin="10dp"
-        android:text="Blur Wallpaper"
-        android:switchPadding="10dp"/>
-
-    <Switch
-        android:id="@+id/onlyHD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/blur"
-        android:layout_margin="10dp"
-        android:text="Only 1080p Walls"
-        android:switchPadding="10dp"/>
-
-</RelativeLayout>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>
